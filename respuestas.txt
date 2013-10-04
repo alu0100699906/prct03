@@ -1,0 +1,345 @@
+Escriba el programa que muestra por la consola la frase "Hola Mundo". ¿Que signiﬁcado tiene la salida? (puts ’Hola Mundo’)
+
+Nos aparece la expresión “HOLA MUNDO”. puts es el comando básico para escribir algo en Ruby. Ese es el resultado de la expresión. puts siempre retorna nil, que es el valor que significa “absolutamente nada” en Ruby.
+
+¿Qu´e diferencia hay entre "\t\n" y ’\t\n’?
+
+Las comillas dobles interpretan lo q está entre las comillas. Las simples no las interpretan, sino las citan textualmente.
+
+22. ¿C´omo funciona %q? ¿Qu´e es %q{hello world\n}? ¿Qu´e es %q{’a’ ’b’ ’c’}?
+
+Se imprime literalmente lo que está dento de las llaves, no interpreta. Es un array de caracteres, se queda tal y como está.
+
+23. ¿C´omo funciona %Q? ¿Qu´e es %Q{hello world\n}? ¿Qu´e es %Q{"a" "b" "c"}?
+
+Q funciona igual que las dobles comillas, es decir evalúa la expresión y nos imprime la cadena “hello world”. Es un array de caracteres. Dentro del array quedan los caracteres a, b y c.
+
+24. ¿Qu´e queda en c?
+irb(main):001:0> a = 4
+=> 4
+irb(main):002:0> b =2
+=> 2
+irb(main):003:0> c = <<HERE
+irb(main):004:0" --#{a}--
+irb(main):005:0" --#{b}--
+irb(main):006:0" HERE
+
+c<<HERE es una asignación multilinea para cadenas de caracteres, tiene que empezar y terminar con la misma palabra.
+En primer lugar, queda en c, las expresiones #{a} y #{b} evaluadas, es decir en vez de una a y una b, muestra un 2 y un 4
+
+25. ¿Qu´e queda en c?
+irb(main):001:0> a = 4
+=> 4
+irb(main):002:0> b =2
+=> 2
+irb(main):008:0> c = <<’HERE’
+irb(main):009:0’ --#{a}--
+irb(main):010:0’ --#{b}--
+irb(main):011:0’ HERE
+
+Si ponemos c=<<'HERE' y escribimos en la cadena de caracteres, quedará en c las expresiones tal y como las has escrito, es decir --#{a}-- y --#{b}--, no las evalúa o interpreta.
+
+
+26. s = "hello". ¿Cu´al es el valor de las siguientes expresiones?
+
+s[0,2] “he”
+s[-1,1] “o”
+s[0,10] “hello”
+
+27. ¿Qu´e queda en g?
+>> g = "hello"
+=> "hello"
+>> g << " world"
+
+En g quedaría la cadena hello World
+
+28. ¿Qu´e queda en e?
+>> e = ’.’*3
+
+Quedaría 3 puntos seguidos, es decir “...”
+
+29. ¿Cu´al es el resultado?
+>> a = 1
+=> 1
+>> "#{a=a+1} "*3
+
+Quedaría una cadena de tres 2 separados por espacios y un espacio al final, es decir “2 2 2 “
+
+30. ¿Qu´e es esto? %w[this is a test]
+
+Crea una cadena de caracteres, la w permite que no pongamos “’, puesto que puede ser lioso. El programa ya lo reconoce solo.
+
+31. ¿Qu´e es esto? %w[\t \n]
+
+No entiende que es un tabulador y un separador y le añade otra "\" mas.
+
+32. ¿Qu´e es esto? %W[\t \n]
+
+En ese caso si muestra separado cada el tabulador y el separador bien.
+
+33. ¿Qu´e contiene nils? nils = Array.new(3)
+
+Crea un array de tres elementos. Contiene una cadena de 3 nil seguidos. [nil,nil,nil].
+
+34. ¿Qu´e contiene zeros? zeros = Array.new(3, 0)
+
+Contiene una cadena de tres caracteres (0).
+
+35. ¿Qu´e queda en b?
+>> x = [[1,2],[3,4]]
+=> [[1, 2], [3, 4]]
+>> b = Array.new(x)
+
+[[1, 2], [3, 4]]
+
+36. ¿Qu´e queda en c?
+>> c = Array.new(3) { |i| 2*i }
+
+En c queda un array de 3 caracteres, los cuales son los tres primeros múltiplos de 2.[0,2,4].
+
+37. ¿Cu´al es el resultado de cada una de estas operaciones?
+>> a = (’a’..’e’).to_a
+=> ["a", "b", "c", "d", "e"]
+>> a[1,1]
+=> [“b”]
+>> a[-2,2]
+=> [“d”,”e”]
+>> a[0..2]
+=> [“a”,”b”,”c”]
+>> a[0...1]
+=> [“a”]
+>> a[-2..-1]
+=> [“d”,”e”]
+
+
+38. ¿Cu´al es el resultado de cada una de estas operaciones?
+>> a
+=> ["a", "b", "c", "d", "e"]
+>> a[0,2] = %w{A B}
+=> ["A", "B"]
+>> a
+=> [“A”,”B”,”d”,”e”]
+>> a[2..5] = %w{C D E}
+=> ["C", "D", "E"]
+>> a
+=> [“A”,”B”,”C”,”D”,”E”]
+>> a[0,0] = [1,2,3]
+=> [1, 2, 3]
+>> a
+=> [1,2,3,”A”,”B”,”C”,”D”,”E”]
+>> a[0,2] = []
+=> []
+>> a
+=> [3,”A”,”B”,”C”,”D”,”E”]
+>> a[-1,1] = [ ’Z’ ]
+=> ["Z"]
+>> a
+=> [3,”A”,”B”,”C”,”D”,”Z”]
+>> a[-2,2] = nil
+=> nil
+>> a
+=> [3,”A”,”B”,”C”]
+
+
+
+
+
+39. ¿Cu´al es el resultado de cada una de estas operaciones?
+>> a = (1...4).to_a
+=> [1,2,3]
+>> a = a + [4, 5]
+=> [1,2,3,4,5]
+>> a += [[6, 7, 8]]
+=> [1,2,3,4,5,[6,7,8]]
+>> a = a + 9
+=> Error, no se puede convertir una constante en un array
+
+
+
+40. ¿Cu´al es el resultado de cada una de estas operaciones?
+>> x = %w{a b c b a}
+=> [“a”,”b”,”c”,”b”,”a”]
+>> x = x - %w{b c d}
+=> [“a”,”a”]
+
+41. ¿Cu´al es el resultado de cada una de estas operaciones?
+>> z = [0]*8
+=> [0,0,0,0,0,0,0,0]
+
+42. ¿Cu´al es el resultado de cada una de estas operaciones?
+>> a = []
+=> []
+>> a << 1
+=> [1]
+>> a << 2 << 3
+=> [1,2,3]
+>> a << [4, 5, 6]
+=> [1,2,3,[4,5,6]]
+>> a.concat [7, 8]
+=> [1,2,3,[4,5,6],7,8]
+
+43. ¿Cu´al es el resultado de cada una de estas operaciones?
+
+>> a = [1, 1, 2, 2, 3, 3, 4]
+=> [1, 1, 2, 2, 3, 3, 4]
+>> b = [5, 5, 4, 4, 3, 3, 2]
+=> [5, 5, 4, 4, 3, 3, 2]
+>> c = a | b
+=> [1,2,3,4,5]
+>> d = b | a
+=> [5,4,3,2,1]
+>> e = a & b
+=> [2,3,4]
+>> f = b & a
+=> [4,3,2]
+
+
+
+
+
+44. ¿Qu´e resultados dan las siguientes operaciones?
+
+>> a = 1..10
+=> 1..10
+>> a.class
+=> Range
+>> a.to_a
+=> [1,2,3,4,5,6,7,8,9,10]
+>> b = 1...10
+=> 1....10
+>> b.to_a
+=> [1,2,3,4,5,6,7,8,9]
+>> b.include? 10
+=> false
+>> b.include? 8
+=> true
+>> b.step(2) {|x| print "#{x} " }
+=> 1,3,5,7,9, => 1…10
+>> 1..3.to_a 
+=> No esta definido el método to_a
+
+
+45. ¿Qu´e resultados dan las siguientes operaciones?
+>> r = 0...100
+=> 0....100
+>> r.member? 50
+=> true
+>> r.include? 99.9
+=> true
+>> r.member? 99.9
+=> true
+
+
+46. ¿Qu´e resultados dan las siguientes operaciones?
+
+>> true.class
+=> TrueClass
+>> false.class
+=> FalseClass
+>> puts "hello" if 0
+=> hello
+>> puts "hello" if nil
+=> nil
+>> puts "hello" if ""
+=> hello
+=> nil
+
+
+
+
+
+
+
+47. ¿Qu´e resultados dan las siguientes operaciones?
+
+>> x = :sym
+=> :sym
+>> x.class
+=> Symbol
+>> x == ’sym’
+=> false
+>> x == :sym
+=> true
+>> z = :’a long symbol’
+=> :"a long symbol"
+>> z.class
+=> symbol
+>> x == ’sym’.to_sym
+=> true
+>> x.to_s == ’sym’
+=> true
+
+48. ¿Qu´e resultados se dan?
+
+>> s = "Ruby"
+=> "Ruby"
+ >> t = s
+=> "Ruby"
+>> t[-1] = ""
+=> ""
+>> print s
+=> Rub => nil
+>> t = "Java"
+=> "Java"
+>> print s, t
+=> RubJava => nil
+
+49. ¿Cu´al es el resultado?
+
+>> "%d %s" % [3, "rubies"]
+=> 3 rubbies
+
+50. ¿Cu´ales son los resultados?
+
+>> x, y = 4, 5
+=> [4,5]
+>> z = x > y ? x : y
+=> 5
+>> x,y,z = [1,2,3]
+=> [1,2,3]
+
+51. ¿Qu´e resultados dan las siguientes operaciones?
+
+>> x = { :a => 1, :b => 2 }
+=> {:b=>2, :a=>1}
+>> x.keys
+=> [:b,:a]
+>> x.values
+=> [2,1]
+>> x[:c] = 3
+=> 3
+>> x
+=> {:b=>2 ,:c=>3, :a=>1}
+>> x.delete(’a’)
+=> nil
+>> x
+=> {:b=>2 ,:c=>3, :a=>1}
+>> x.delete(:a)
+=> 1
+>> x
+=> {:b=>2, C=>3}
+>> x = { :a => 1, :b => 2, :c => 4 }
+=> {:b=>2, :c=>4, :a=>1}
+>> x.delete_if { |k,v| v % 2 == 0 }
+=> {:a=>1}
+>> x
+=> {:a=>1}
+
+52. ¿Qu´e hace yield 4, 5?
+
+Yiel cede el control al bloque pasandole dos parámetros (4,5)
+
+53. ¿Qu´e hace la siguiente sentencia? counts = Hash.new(0) ¿Qu´e diferencia hay con la asignaci´on counts = {}?
+
+No hay diferencia
+
+54. ¿Qu´e retorna esta expresi´on? ’hello world, hello LPP’.scan /\w+/
+
+ ["hello", "world", "hello", "LPP"]
+
+55. Explique que hacen estas sentencias:
+
+c = { :a => 3, :b => 2, :c => 1 }
+c.keys.sort.each { |k| puts c[k] }
+
+Crea un array de valores, y a cada posicion le asigna un valor. Luego hace una iteracion mostrando todos los valores de "c".
